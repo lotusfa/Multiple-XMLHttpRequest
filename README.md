@@ -1,6 +1,6 @@
-# Send-Multiple-Request
+# Multiple-XMLHttpRequest
 
-Send-Multiple-Request is a tools to send multiple request in few clicks. 
+Multiple-XMLHttpRequest is a tools to send multiple request in few clicks. 
 
 | INPUT | Description | Example |
 | --- | --- | --- |
