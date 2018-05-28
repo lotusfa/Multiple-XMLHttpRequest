@@ -1,2 +1,4 @@
 action,titles,prop,rvprop,format,formatversion
 query,Main,revisions,content,json,2
+query,WWW_(disambiguation),revisions,content,json,2
+query,Raycho_Karmadzhiev,revisions,content,json,2

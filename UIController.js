@@ -119,8 +119,8 @@ class UIController {
 
 	add_result_html (str) {
 		console.log("str:",str);
-		let br = document.createElement("br");
-		this.result_space.appendChild(br);
+		let hr = document.createElement("hr");
+		this.result_space.appendChild(hr);
 		let p = document.createElement("p");
 		p.innerHTML = str;
 		this.result_space.appendChild(p);
