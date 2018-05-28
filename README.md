@@ -3,11 +3,11 @@
 Send-Multiple-Request is a tools to send multiple request in few clicks. 
 
 | INPUT | Description | Example |
-| --- | --- |
+| --- | --- | --- |
 | METHOD | GET/POST/PUT/DELETE | GET |
-| Data | csv/xlsx file with data | a,b,c  v1,v2,v3  v1,v3,v4 |
+| Data | csv/xlsx file with data | a,b,c  <br> v1,v2,v3  <br> v1,v3,v4 |
 | URL | target server url |	http://example.com |
-|Result | send multiple request | http://example.com?a=v1&b=v2&c=v3  http://example.com?a=v1&b=v3&c=v4 | 
+|Result | send multiple request | http://example.com?a=v1&b=v2&c=v3 <br> http://example.com?a=v1&b=v3&c=v4 | 
 
 ## Pre-install
 
