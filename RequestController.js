@@ -46,6 +46,7 @@ class RequestController {
 
 	get(params,callback = (x)=>{}){
 		//foo=bar&lorem=ipsum
+		let self = this;
 		let url = this.url + "?" + params;
 		var xhr = new XMLHttpRequest();
 		xhr.open('GET', url, true);
@@ -55,7 +56,7 @@ class RequestController {
 		};
 
 		xhr.onerror = function() {
-		  this.on_error();
+		  self.on_error();
 		};
 
 		xhr.send();
@@ -92,9 +93,9 @@ class RequestController {
 		        callback(this.responseText);
 		    }
 		}
-
+		let self = this;
 		xhr.onerror = function() {
-		  this.on_error();
+		  self.on_error();
 		};
 
 		xhr.send(params); 
