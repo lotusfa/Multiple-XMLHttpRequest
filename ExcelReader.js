@@ -95,7 +95,7 @@ class Excel_Reader {
 		  var workbook = XLSX.read(data, {type: rABS ? 'binary' : 'array'});
 
 		  /* DO SOMETHING WITH workbook HERE */
-		  callback(XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]));
+		  callback(XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]] , { defval : "" } ));
 		};
 		if(rABS) reader.readAsBinaryString(f); else reader.readAsArrayBuffer(f);
 	}

@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Multiple XMLHttpRequest (GET/POST/PUT/DELETE)</title>
+	<title>Multiple XMLHttpRequest Tools (GET/POST/PUT/DELETE)</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="keywords" content="how to send multiple request to server, Send Multiple Requests, Javascript, postman send multiple requests, send multiple requests using postman, soapui send multiple requests, postman run single request multiple times, postman iteration variable, postman sequential requests, postman bulk send, send multiple soap requests, postman alternative, postman, restful-api, http, https, XMLHttpRequest, GET, POST, PUT, DELETE, client">
 
 	<!-- Boostrap 4 -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -10,34 +12,54 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
 	<!-- Sheet.js -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.6/xlsx.full.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.12.13/xlsx.full.min.js"></script>
 
 	<!-- JS -->
 	<script src="./RequestController.js"></script>
 	<script src="./ExcelReader.js"></script>
 	<script src="./UIController.js"></script>
 	<script src="./DataTable.js"></script>
+
 </head>
 <body>
 	<div class="container">
-		<h1>Multiple XMLHttpRequest</h1>
-		<p> This allow you to send many request in few clicks. You just need to import your data and tell us where to send. <br> For more details, visit my <a href="https://github.com/lotusho/Multiple-XMLHttpRequest">GITHUB</a>.</p>
+		<h2>Multiple XMLHttpRequest Tools</h2>
+		<h5>- online tools to send multiple requests to server</h5>
+		<hr>
+		<p> <b>How to send multiple request to server?</b> 
 
-		<p>You can try the program with the following dataset: (GET, https://en.wikipedia.org/w/api.php, <a href="./wiki_example.csv" download="./wiki_example.csv">CSV</a>)</p>
+			<br> -	Enable <u><i><a target="_blank" href="https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi/related?hl=en">CORS</a> </i></u> ->Import your <u><i>DATA</i></u> -> Choose <u><i>Method</i></u> -> Input <u><i>URL</i></u>  -> Click <u><i>Send</i></u>
+			<br> 
+			<table border="1">
+				<b>Here is a example: </b>
+				<tr><th>DATA</th><th>Method</th><th>URL</th></tr>
+				<tr>
+					<td><a href="./wiki_example.csv" download="./wiki_example.csv">CSV</a></td>
+					<td>GET</td>
+					<td>https://en.wikipedia.org/w/api.php</td>
+				</tr>	
+			</table>
 
-		<code>IMPORTANT: To allows cross-domain-request, you need to install extention: <a target="_blank" href="https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi/related?hl=en">(Allow-Control-Allow-Origin: *)</a></code>
+			<br><b>For more details,</b> visit my <a href="https://github.com/lotusho/Multiple-XMLHttpRequest">GITHUB</a>.
+			<br>
+			<br> <code><b>Pre-install:</b> To allows cross-domain-request, install this extention: <u> <a target="_blank" href="https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi/related?hl=en">(Allow-Control-Allow-Origin: *)</a></u></code>
+		</p>
 
+		<p></p>
+		<p></p>
+
+		
 		<hr>
 		<!-- IMPORT CSV PAGE -->
 		
 			<div class="row">
 				<div class="col-md-6">
-			    	<h4>Import DATA (csv/xlsx)</h4>
-			    	<small>with your data (key & value)</small>
+			    	<h5>Import DATA (xlsx/csv) : </h5>
+			    	<small>Note: Recommend to use xlsx <br> - csv formate is not support the data with comma ( , ) and empty data. </small>
 			    	<form>
 			    		<div class="form-group">
 			    			<div class="input-group row">
-			    				<label for="import_asn_file" class="col-sm-2 col-form-label">CSV:</label>
+			    				<label for="import_asn_file" class="col-sm-2 col-form-label">xlsx/csv:</label>
 			    				<div class="col-sm-10">
 			    					 <input type="file" class="form-control-file" id="csv_import_btn" >
 			    				</div>
@@ -48,10 +70,14 @@
 
 
 			    <div class="col-md-6">
-			    	<h4>Request Config</h4>
+			    	<h5>Request Setting</h5>
 			    	<form>
 			    		<div class="form-group">
 			    			<div class="input-group mb-3">
+			    				<div class="input-group-prepend">
+			    				    <span class="input-group-text" id="">Method & URL : </span>
+			    				</div>
+
 			    			  <div class="input-group-prepend">
 			    			    <select class="custom-select" id="method_input">
 			    			        <option value="GET" selected>GET</option>
@@ -63,8 +89,27 @@
 			    			  <input type="text" class="form-control" aria-label="Text input with dropdown button" id="url_input" placeholder="URL..." >
 			    			</div>
 
+			    			<div class="input-group mb-3">
+			    				<div class="input-group-prepend">
+			    				    <span class="input-group-text" id="">Content-type : </span>
+			    				</div>
+			    			  <input type="text" class="form-control" placeholder="Header"
+			    			  id="content_type_input" value="application/x-www-form-urlencoded">
+			    			</div>
+			    			
+			    			<div class="input-group mb-3">
+			    				<div class="input-group-prepend">
+			    				    <span class="input-group-text" id="">Delay Times : </span>
+			    				</div>
+			    				
+			    			  <input type="text" class="form-control" placeholder="Dealy Time..."
+			    			  id="delay_time_input" value="200">
+			    			  <div class="input-group-append">
+			    			  	<span class="input-group-text">ms/request</span>
+			    			    <button type="button" class="btn btn-primary active" id="send_btn" >Send</button>
+			    			  </div>
+			    			</div>
 			    	  	 </div>
-			    		<button type="button" class="btn btn-primary active" id="send_btn" >Send</button>
 
 			    	</form>
 			    	<br>
@@ -74,7 +119,7 @@
 			
 		<br>
 		<h4>Table</h4>
-		<table class="table">
+		<table class="table table-bordered" style="font-size: 8px;">
 			<thead>
 				<tr id="csv_header">
 					<th></th>
@@ -99,7 +144,7 @@
         <hr>
         <h4>Result</h4>
 
-        <div id="result_space" >
+        <div id="result_space" style="font-size: 8px;">
         	<br>
         	<br>
         	<br>

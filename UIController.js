@@ -7,9 +7,13 @@ class UIController {
 		this.url_input = document.getElementById("url_input");
 		this.method_input = document.getElementById("method_input");
 		this.result_space = document.getElementById("result_space");
+		this.delay_time_input = document.getElementById("delay_time_input");
+		this.content_type_input = document.getElementById("content_type_input");
+
 		this.event_init ();
 		this.table = null;
 		this.xml_request = new RequestController;
+		this.delay_time = 200;
 	}
 
 	event_init () {
@@ -26,8 +30,16 @@ class UIController {
 			self.on_method_change();
 		});
 
+		this.delay_time_input.addEventListener("change", ()=>{
+			self.on_delay_time_change();
+		});
+
 		this.import_btn.addEventListener("click", ()=>{
 			self.on_click_send_btn();
+		});
+
+		this.content_type_input.addEventListener("change", ()=>{
+			self.on_content_type_change();
 		});
 	}
 
@@ -38,6 +50,7 @@ class UIController {
 			if (bool) {
 				//this.asn_name_input.disabled = false;
 				Excel_Reader.excel_to_json (theFile,(str)=>{
+
 					let temp_table = new DataTable;
 					temp_table.import_json(str,"name",()=>{
 						this.table = temp_table;
@@ -56,6 +69,14 @@ class UIController {
 		this.xml_request.set_url(this.url_input.value);
 	}
 
+	on_content_type_change () {
+		this.xml_request.set_content_type(this.content_type_input.value);
+	}
+
+	on_delay_time_change () {
+		this.delay_time = this.delay_time_input.value;
+	}
+
 	on_method_change () {
 		this.xml_request.set_method(this.method_input.value);
 	}
@@ -63,6 +84,8 @@ class UIController {
 	on_click_send_btn () {
 		if (this.table == null ) 
 			return;
+
+		let self = this;
 
 		this.clear_result_html ();
 		for (let i = 0; i < this.table.rows.length ; i++) { 
@@ -73,13 +96,18 @@ class UIController {
 				this.xml_request.send(st);
 			}
 			else{
-				for (var j = 1; j < this.table.cols.length; j++) {
+				for (let j = 1; j < this.table.cols.length; j++) {
 					st += "&"+this.table.cols[j]+"="+this.table.rows[i][j];
 
 					if (j == this.table.cols.length - 1) { 
-						this.xml_request.send(st,(r)=>{
-							this.add_result_html (r);
-						});
+
+						setTimeout(()=>{ 
+							console.log("Send :"+i );
+							self.xml_request.send(st,(r)=>{
+								self.add_result_html(r);
+							});
+						}, self.delay_time*i );
+
 					}
 				}
 			}
@@ -118,7 +146,6 @@ class UIController {
 	}
 
 	add_result_html (str) {
-		console.log("str:",str);
 		let hr = document.createElement("hr");
 		this.result_space.appendChild(hr);
 		let p = document.createElement("p");

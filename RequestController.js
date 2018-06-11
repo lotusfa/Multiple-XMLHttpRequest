@@ -3,7 +3,7 @@ class RequestController {
 		this.url = null;
 		this.method_list = ["GET","POST","PUT"];
 		this.method = "GET";
-
+		this.content_type = "application/x-www-form-urlencoded";
 	}
 
 	set_url (url){
@@ -81,12 +81,16 @@ class RequestController {
 		});
 	}
 
+	set_content_type(c) {
+		this.content_type = c;
+	}
+
 	xml_http_request(method,url,params = "",callback = (x)=>{}){
 		var xhr = new XMLHttpRequest();
 		xhr.open(method, url , true);
 
 		//Send the proper header information along with the request
-		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhr.setRequestHeader("Content-type", this.content_type);
 
 		xhr.onreadystatechange = function() {//Call a function when the state changes.
 		    if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
