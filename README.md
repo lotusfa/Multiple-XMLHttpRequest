@@ -2,6 +2,8 @@
 
 Multiple-XMLHttpRequest is a tools to send multiple request in few clicks. 
 
+![alt text](https://res.cloudinary.com/dcmnwc3ux/image/upload/q_auto:good/v1528997843/Lotusfa.com/Multiple_XMLHttpRequest_Tools_ICON.png)
+
 | INPUT | Description | Example |
 | --- | --- | --- |
 | METHOD | GET/POST/PUT/DELETE | GET |
